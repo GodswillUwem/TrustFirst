@@ -2,5 +2,7 @@
   "name": "TrustFirst - Verified Artisan Platform",
   "description": "A trust-first digital artisan platform connecting customers with verified artisans in Owerri, Imo State, featuring verified identity, physical checks, proof-of-work confirmation, and payment accountability.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

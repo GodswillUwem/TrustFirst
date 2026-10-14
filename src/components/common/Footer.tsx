@@ -64,6 +64,14 @@ export const Footer: React.FC = () => {
                   Verification & Dispute Desk
                 </button>
               </li>
+              <li>
+                <button
+                  onClick={() => setCurrentView('auth')}
+                  className="hover:text-teal-400 transition-colors font-medium text-teal-300"
+                >
+                  Sign In / Create Account
+                </button>
+              </li>
             </ul>
           </div>
 

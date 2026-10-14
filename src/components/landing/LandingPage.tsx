@@ -18,6 +18,11 @@ import {
   ChevronRight,
   TrendingUp,
   Award,
+  LogIn,
+  ArrowDown,
+  Briefcase,
+  User,
+  AlertCircle,
 } from 'lucide-react';
 
 export const LandingPage: React.FC = () => {
@@ -32,26 +37,18 @@ export const LandingPage: React.FC = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-800/25 via-transparent to-transparent pointer-events-none" />
 
         <div className="max-w-6xl mx-auto relative z-10">
-          {/* Owerri Localization Kicker */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-teal-300 text-xs font-medium mb-6">
-            <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
-            <span>Built for Owerri, Imo State · Powered by Proof of Work & Escrow</span>
-          </div>
+
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Hero Content */}
             <div className="lg:col-span-7 space-y-6">
               <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.15] font-display">
-                Find skilled artisans.{' '}
-                <span className="text-teal-400">Verify their credibility.</span> Confirm the work
-                before payment is released.
+                Find Skilled Artisans.{' '}
+                <span className="text-teal-400">Hire with Confidence.</span>
               </h1>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl">
-                In Owerri, thousands of master plumbers, electricians, carpenters, and fabricators
-                learn via rigorous multi-year apprenticeships — yet lack formal credentials.
-                TrustFirst solves the trust gap with dual identity checks, physical workshop visits,
-                and proof-of-work customer confirmation.
+                Discover verified artisans, explore their work, and book trusted professionals. With proof of work and customer-confirmed job completion, we make artisan hiring more transparent and accountable.
               </p>
 
               {/* Action Buttons */}
@@ -61,15 +58,15 @@ export const LandingPage: React.FC = () => {
                   className="px-6 py-3.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm rounded-xl transition-all shadow-lg hover:shadow-teal-500/20 flex items-center gap-2 cursor-pointer"
                 >
                   <Search className="w-4 h-4 text-slate-950" />
-                  <span>Find Artisans in Owerri</span>
+                  <span>Find Artisans</span>
                 </button>
 
                 <button
-                  onClick={() => openModal('demo_flow')}
-                  className="px-5 py-3.5 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-semibold text-sm rounded-xl transition-all flex items-center gap-2 cursor-pointer"
+                  onClick={() => setCurrentView('auth')}
+                  className="px-6 py-3.5 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-semibold text-sm rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-md hover:border-slate-600"
                 >
-                  <Sparkles className="w-4 h-4 text-teal-400" />
-                  <span>Interactive MVP Demo (7 Steps)</span>
+                  <LogIn className="w-4 h-4 text-teal-400" />
+                  <span>Login</span>
                 </button>
               </div>
 
@@ -200,96 +197,221 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* The Owerri Reality & Problem Breakdown */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
+      {/* Problem Breakdown Section (Matching Screenshot) */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="text-xs font-semibold text-teal-600 tracking-wider uppercase">
-            The Trust Gap in Owerri
+            Market Diagnosis
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">
-            Why Traditional Artisan Hiring Breaks Down in Imo State
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display tracking-tight">
+            Problem
           </h2>
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            In neighborhoods from Ikenegbu to New Owerri and World Bank Estate, informal hiring leads
-            to frustration on both sides. TrustFirst introduces verifiable accountability.
+            The informal artisan economy is held back by systemic friction on both sides of the transaction. Here is the current state of things in today's market:
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Traditional Way (Problem) */}
-          <div className="p-6 rounded-2xl bg-rose-50/50 border border-rose-200/80 space-y-4">
-            <div className="flex items-center gap-2 text-rose-700 font-bold text-base">
-              <AlertTriangle className="w-5 h-5 text-rose-600" />
-              <span>The Traditional Blind-Trust Way</span>
+        {/* 2-Column Comparison: Artisan's End vs. Customer's End */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+          {/* Column 1: Artisan's End */}
+          <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-xs flex flex-col justify-between space-y-5 hover:border-slate-300 transition-colors">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
+                <div className="w-10 h-10 rounded-xl bg-slate-900 text-teal-400 flex items-center justify-center shrink-0">
+                  <Briefcase className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                    Supply Side
+                  </span>
+                  <h3 className="font-bold text-slate-900 text-base sm:text-lg leading-snug">
+                    What is happening / Current state of things on the artisan’s end
+                  </h3>
+                </div>
+              </div>
+
+              <ul className="space-y-3.5 text-xs sm:text-sm text-slate-700">
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 shrink-0" />
+                  <span>
+                    <strong>Difficulty finding customers</strong> beyond personal word-of-mouth referrals.
+                  </span>
+                </li>
+
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 shrink-0" />
+                  <span>
+                    <strong>Artisans’ difficulty in proving competence & earning trust:</strong> Trust traditionally depends on word-of-mouth. Artisans have practical skills but limited ways to prove them, and there is no standardized way to verify practical skills.
+                  </span>
+                </li>
+
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 shrink-0" />
+                  <span>
+                    <strong>Payment disputes and disagreements:</strong> Persistent friction over completed work with little accountability between payment, delivery, and customer satisfaction.
+                  </span>
+                </li>
+
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 shrink-0" />
+                  <span>
+                    <strong>Inconsistent job opportunities:</strong> Volatile earnings and irregular work without a reliable digital pipeline.
+                  </span>
+                </li>
+
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 shrink-0" />
+                  <span>
+                    <strong>Informal work is poorly documented:</strong> Previous project samples are scattered across WhatsApp chats or social media with no credible portfolio.
+                  </span>
+                </li>
+
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 shrink-0" />
+                  <span>
+                    <strong>Unprotected delivery risks:</strong> Artisans risk arbitrary payment delays or unfair customer deductions even after delivering as agreed.
+                  </span>
+                </li>
+              </ul>
             </div>
-            <ul className="space-y-3 text-sm text-slate-700">
-              <li className="flex items-start gap-2.5">
-                <span className="text-rose-600 font-bold mt-0.5">✕</span>
-                <span>
-                  <strong>Unverified Word-of-Mouth:</strong> Relying on phone numbers passed on
-                  scraps of paper with zero identity validation or workshop trace.
-                </span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <span className="text-rose-600 font-bold mt-0.5">✕</span>
-                <span>
-                  <strong>Upfront Cash Risk:</strong> Artisan demands 70% mobilization, buys
-                  inferior counterfeit pipes/wires, and disappears when issues arise.
-                </span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <span className="text-rose-600 font-bold mt-0.5">✕</span>
-                <span>
-                  <strong>Zero Recourse or Evidence:</strong> Incomplete work or damaged property has
-                  no photographic paper trail and no mediation.
-                </span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <span className="text-rose-600 font-bold mt-0.5">✕</span>
-                <span>
-                  <strong>Honest Artisans Suffer:</strong> Brilliant master craftsmen cannot prove
-                  their track record to high-value homeowners.
-                </span>
-              </li>
-            </ul>
+
+            <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
+              <span>Impact on Artisans</span>
+              <span className="text-rose-600 font-semibold">Limited growth & income insecurity</span>
+            </div>
           </div>
 
-          {/* TrustFirst Way (Solution) */}
-          <div className="p-6 rounded-2xl bg-teal-50/60 border border-teal-200 space-y-4">
-            <div className="flex items-center gap-2 text-teal-800 font-bold text-base">
-              <ShieldCheck className="w-5 h-5 text-teal-600" />
-              <span>The TrustFirst Accountability Engine</span>
+          {/* Column 2: Customer's End */}
+          <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-xs flex flex-col justify-between space-y-5 hover:border-slate-300 transition-colors">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
+                <div className="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center shrink-0">
+                  <User className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                    Demand Side
+                  </span>
+                  <h3 className="font-bold text-slate-900 text-base sm:text-lg leading-snug">
+                    What is happening / Current state of things on the customer’s end
+                  </h3>
+                </div>
+              </div>
+
+              <ul className="space-y-3.5 text-xs sm:text-sm text-slate-700">
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 shrink-0" />
+                  <span>
+                    <strong>Lack of trust and fear of fraud:</strong> Customers take substantial risk when hiring someone they don’t already personally know.
+                  </span>
+                </li>
+
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 shrink-0" />
+                  <span>
+                    <strong>Difficulty comparing artisan’s quotations:</strong> Arbitrary pricing with zero transparent standard cost breakdown.
+                  </span>
+                </li>
+
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 shrink-0" />
+                  <span>
+                    <strong>Risk of poor-quality work:</strong> Substandard craftsmanship, peeling paint, or leaking pipes with zero warranty or recourse.
+                  </span>
+                </li>
+
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 shrink-0" />
+                  <span>
+                    <strong>Risk of losing money through advance payments:</strong> Upfront deposits paid without certainty that the artisan will complete the job.
+                  </span>
+                </li>
+
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 shrink-0" />
+                  <span>
+                    <strong>Difficulty distinguishing reliable artisans:</strong> Inability to separate master craftsmen from inexperienced handymen.
+                  </span>
+                </li>
+
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 shrink-0" />
+                  <span>
+                    <strong>Artisans failing to show up as agreed:</strong> Missed appointments and delivery timelines taking far longer than promised.
+                  </span>
+                </li>
+
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mt-2 shrink-0" />
+                  <span>
+                    <strong>Existing digital platforms aren't designed for this purpose:</strong> Generic marketplaces lack physical workshop verification and customer confirmation gates.
+                  </span>
+                </li>
+              </ul>
             </div>
-            <ul className="space-y-3 text-sm text-slate-700">
-              <li className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                <span>
-                  <strong>Dual Identity & Physical Check:</strong> Government ID verified + physical
-                  inspection of the artisan's workshop in Owerri by an authorized officer.
-                </span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                <span>
-                  <strong>Apprenticeship Lineage Recorded:</strong> Master craftsman trainer, years of
-                  service, and trade union affiliation clearly documented.
-                </span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                <span>
-                  <strong>Mandatory Proof of Work:</strong> Artisan uploads high-res completion
-                  photos, materials list, and pressure/testing logs before requesting payment.
-                </span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                <span>
-                  <strong>Customer-Gated Escrow:</strong> Payment is ONLY released when the customer
-                  confirms satisfaction. Reported issues trigger instant mediation hold.
-                </span>
-              </li>
-            </ul>
+
+            <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
+              <span>Impact on Customers</span>
+              <span className="text-rose-600 font-semibold">High financial risk & anxiety</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Strategic Transformation Pipeline (Matching Diagram at Bottom of Screenshot) */}
+        <div className="bg-slate-950 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-xl space-y-6">
+          <div className="text-center max-w-xl mx-auto space-y-1 mb-2">
+            <span className="text-[11px] font-bold text-teal-400 uppercase tracking-widest">
+              Strategic Value Alignment
+            </span>
+            <h3 className="text-lg sm:text-xl font-bold font-display">
+              Bridging the Trust Divide
+            </h3>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-4">
+            {/* Tier 1: The Problem */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-slate-800 text-center space-y-1.5 transition-all hover:border-rose-500/40">
+              <span className="text-xs font-bold text-rose-400 uppercase tracking-wider block">
+                The Problem
+              </span>
+              <p className="text-sm sm:text-base font-semibold text-slate-200">
+                Low trust + limited visibility + weak accountability
+              </p>
+            </div>
+
+            {/* Downward Connector Arrow */}
+            <div className="flex justify-center text-teal-400 py-0.5">
+              <div className="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center">
+                <ArrowDown className="w-4 h-4 animate-bounce" />
+              </div>
+            </div>
+
+            {/* Tier 2: Your Solution */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-teal-950/80 via-slate-900 to-teal-950/80 border border-teal-500/40 text-center space-y-2 shadow-lg ring-1 ring-teal-500/20">
+              <span className="text-xs font-extrabold text-teal-300 uppercase tracking-wider block">
+                Your Solution (TrustFirst)
+              </span>
+              <p className="text-sm sm:text-base font-bold text-white leading-relaxed">
+                Artisan verification + portfolios + structured bookings + customer-confirmed completion + verified reviews
+              </p>
+            </div>
+
+            {/* Downward Connector Arrow */}
+            <div className="flex justify-center text-teal-400 py-0.5">
+              <div className="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center">
+                <ArrowDown className="w-4 h-4" />
+              </div>
+            </div>
+
+            {/* Tier 3: The Intended Impact */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-slate-800 text-center space-y-1.5 transition-all hover:border-teal-500/40">
+              <span className="text-xs font-bold text-teal-400 uppercase tracking-wider block">
+                The Intended Impact
+              </span>
+              <p className="text-sm sm:text-base font-medium text-slate-200 leading-relaxed">
+                Safer hiring decisions, greater customer confidence, stronger artisan reputations, and more business opportunities
+              </p>
+            </div>
           </div>
         </div>
       </section>

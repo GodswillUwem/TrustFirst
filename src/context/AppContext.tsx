@@ -24,7 +24,8 @@ export type AppView =
   | 'customer_dashboard'
   | 'artisan_dashboard'
   | 'admin_dashboard'
-  | 'register_artisan';
+  | 'register_artisan'
+  | 'auth';
 
 interface ToastNotification {
   id: string;
@@ -93,6 +94,13 @@ interface AppContextType {
     artisanId: string,
     verificationUpdates: Partial<VerificationDetails>
   ) => void;
+  registerCustomer: (customerData: {
+    name: string;
+    phone: string;
+    email: string;
+    location: any;
+  }) => CurrentUser;
+  loginUser: (role: UserRole, artisanId?: string) => void;
   
   // Modals & Flows
   activeBookingForModal: Booking | null;
@@ -607,6 +615,71 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     });
   };
 
+  const registerCustomer = (customerData: {
+    name: string;
+    phone: string;
+    email: string;
+    location: any;
+  }): CurrentUser => {
+    const newUser: CurrentUser = {
+      id: `cust-${Date.now()}`,
+      name: customerData.name || 'Owerri Resident',
+      role: 'customer',
+      email: customerData.email || 'customer@trustfirst.ng',
+      phone: customerData.phone || '+234 800 000 0000',
+      avatarUrl:
+        'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
+      location: customerData.location || 'New Owerri',
+    };
+    setCurrentUser(newUser);
+    localStorage.setItem(STORAGE_KEYS.ROLE, 'customer');
+    showToast({
+      type: 'success',
+      title: 'Customer Account Created!',
+      message: `Welcome to TrustFirst, ${newUser.name}. You can now book verified artisans with escrow protection.`,
+    });
+    return newUser;
+  };
+
+  const loginUser = (role: UserRole, artisanId?: string) => {
+    if (role === 'artisan') {
+      const art = artisanId ? artisans.find((a) => a.id === artisanId) : artisans[0];
+      const artisanUser: CurrentUser = {
+        id: art ? `art-${art.id}` : 'art-emeka',
+        name: art ? art.fullName : 'Emeka Okonkwo',
+        role: 'artisan',
+        email: art ? art.email : 'emeka.plumbing@trustfirst.ng',
+        phone: art ? art.phone : '+234 803 491 8820',
+        avatarUrl: art ? art.avatarUrl : DEMO_USERS.artisan.avatarUrl,
+        location: art?.serviceAreas[0] || 'Ikenegbu Layout',
+        artisanProfileId: art ? art.id : 'artisan-1',
+      };
+      setCurrentUser(artisanUser);
+      localStorage.setItem(STORAGE_KEYS.ROLE, 'artisan');
+      showToast({
+        type: 'success',
+        title: 'Logged in as Artisan',
+        message: `Welcome back, ${artisanUser.name}. Your workshop portal is ready.`,
+      });
+    } else if (role === 'admin') {
+      setCurrentUser(DEMO_USERS.admin);
+      localStorage.setItem(STORAGE_KEYS.ROLE, 'admin');
+      showToast({
+        type: 'info',
+        title: 'Logged in as Administrator',
+        message: 'Welcome, Engr. Kenneth Nze (Imo Verification Officer).',
+      });
+    } else {
+      setCurrentUser(DEMO_USERS.customer);
+      localStorage.setItem(STORAGE_KEYS.ROLE, 'customer');
+      showToast({
+        type: 'success',
+        title: 'Logged in as Customer',
+        message: `Welcome back, ${DEMO_USERS.customer.name}.`,
+      });
+    }
+  };
+
   // Reset to initial demo state
   const resetDemoData = () => {
     localStorage.removeItem(STORAGE_KEYS.ARTISANS);
@@ -647,6 +720,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         submitReview,
         registerArtisan,
         updateArtisanVerification,
+        registerCustomer,
+        loginUser,
         activeBookingForModal,
         setActiveBookingForModal,
         openModal,

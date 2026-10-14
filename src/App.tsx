@@ -15,6 +15,7 @@ import { CustomerDashboard } from './components/dashboard/CustomerDashboard';
 import { ArtisanDashboard } from './components/dashboard/ArtisanDashboard';
 import { AdminDashboard } from './components/admin/AdminDashboard';
 import { ArtisanRegistrationModal } from './components/onboarding/ArtisanRegistrationModal';
+import { AuthPage } from './components/auth/AuthPage';
 import { BookingModal } from './components/booking/BookingModal';
 import { ProofOfWorkModal } from './components/proof/ProofOfWorkModal';
 import { CustomerConfirmationModal } from './components/proof/CustomerConfirmationModal';
@@ -34,6 +35,7 @@ const MainContent: React.FC = () => {
       {currentView === 'artisan_dashboard' && <ArtisanDashboard />}
       {currentView === 'admin_dashboard' && <AdminDashboard />}
       {currentView === 'register_artisan' && <ArtisanRegistrationModal />}
+      {currentView === 'auth' && <AuthPage />}
     </main>
   );
 };

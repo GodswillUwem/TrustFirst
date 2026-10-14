@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --color-brand-navy: #0F172A;
+  --color-brand-teal: #0D9488;
+  --color-brand-emerald: #059669;
+}
+
+/* Custom scrollbars and transitions */
+html {
+  scroll-behavior: smooth;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
